@@ -41,12 +41,14 @@ public class Program1 {
 				//String sql = "create database jdbcTest";
 				//String sql="create table Student(id int,name varchar(60),school varchar(60),fname varchar(60),lname varchar(60))";
 				//String sql = "insert into Student values(1,'rohit','digit','rohit','kumar')";
-				String sql = "insert into Student values(?,?,?,?,?)";
+				//String sql = "insert into Student values(?,?,?,?,?)";
+				//String sql="update student set name=? where id=?";
+				
 				// step 4
-				// stmt = con.createStatement(); 1st create
+				//stmt = con.createStatement(); 1st create
 				  pstmt=con.prepareStatement(sql);
 				  Scanner sc=new Scanner(System.in);
-				  System.out.println("Enter number of row you want to create : ");
+				  /*System.out.println("Enter number of row you want to create : ");
 				  row=sc.nextInt();
 				  for(int i=0;i<row;i++) {
 					  System.out.println("enter row number : "+(i+1));
@@ -61,10 +63,16 @@ public class Program1 {
 				  System.out.println("ente the student lname : ");
 				  pstmt.setString(5,sc.next());
 				  x=pstmt.executeUpdate();
-				  }
+				  }*/
 				  
+				  System.out.println("enter new name");
+				  pstmt.setString(1, sc.next());
+				  System.out.println("enter id");
+				  pstmt.setInt(2,sc.nextInt());
+				  x=pstmt.executeUpdate();
+				   
 				// step 5
-				//stmt.executeUpdate(sql); 
+				 //stmt.executeUpdate(sql); 
 				
 				if(x>0) {
 					System.out.println("data added");
