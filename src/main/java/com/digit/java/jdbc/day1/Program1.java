@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.Scanner;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 
 /**
  * 
@@ -46,7 +48,7 @@ public class Program1 {
 				
 				// step 4
 				//stmt = con.createStatement(); 1st create
-				  pstmt=con.prepareStatement(sql);
+				  //pstmt=con.prepareStatement(sql);
 				  Scanner sc=new Scanner(System.in);
 				  /*System.out.println("Enter number of row you want to create : ");
 				  row=sc.nextInt();
@@ -65,23 +67,71 @@ public class Program1 {
 				  x=pstmt.executeUpdate();
 				  }*/
 				  
-				  System.out.println("enter new name");
+				  /*System.out.println("enter new name");
 				  pstmt.setString(1, sc.next());
 				  System.out.println("enter id");
 				  pstmt.setInt(2,sc.nextInt());
-				  x=pstmt.executeUpdate();
+				  x=pstmt.executeUpdate();*/
 				   
 				// step 5
 				 //stmt.executeUpdate(sql); 
 				
-				if(x>0) {
+				/*if(x>0) {
 					System.out.println("data added");
 				}
 				else {
 					System.out.println("failed data addition");
 				}
 				//System.out.println("Database Created");
-				System.out.println("Student Table Created");
+				System.out.println("Student Table Created");*/
+				//-------------------------------------
+				/*String sql="select *from student";
+				stmt=con.createStatement();
+				ResultSet ResultSet = stmt.executeQuery(sql);
+				while(ResultSet.next()==true) {
+					System.out.println(ResultSet.getInt("id"));
+					//System.out.println(ResultSet.getString(2));
+					System.out.println(ResultSet.getString("name"));
+					System.out.println(ResultSet.getString("school"));
+					System.out.println(ResultSet.getString("fname"));
+					System.out.println(ResultSet.getString("lname"));
+					System.out.println("---------------------------");
+					
+				}*/
+				/*sql="select *from student where id=?";
+				pstmt=con.prepareStatement(sql);
+				System.out.println("enter id");
+				pstmt.setInt(1, sc.nextInt());
+
+				 ResultSet = pstmt.executeQuery();
+				while(ResultSet.next()==true) {
+					System.out.println(ResultSet.getInt("id"));
+					//System.out.println(ResultSet.getString(2));
+					System.out.println(ResultSet.getString("name"));
+					System.out.println(ResultSet.getString("school"));
+					System.out.println(ResultSet.getString("fname"));
+					System.out.println(ResultSet.getString("lname"));
+					System.out.println("---------------------------");
+					
+				}*/
+				String sql="select *from student";
+				
+				stmt=con.createStatement();
+				 ResultSet ResultSet = stmt.executeQuery(sql);
+				 ResultSetMetaData metaData = ResultSet.getMetaData();
+				 ResultSet.afterLast();
+				 System.out.println(ResultSet.isAfterLast());
+				while(ResultSet.previous()==true) {
+					System.out.println(ResultSet.getInt("id"));
+					//System.out.println(ResultSet.getString(2));
+					System.out.println(ResultSet.getString("name"));
+					System.out.println(ResultSet.getString("school"));
+					System.out.println(ResultSet.getString("fname"));
+					System.out.println(ResultSet.getString("lname"));
+					System.out.println("---------------------------");
+					
+				}
+				
 
 			} else {
 				System.out.println("Connection Failed");
